@@ -12,6 +12,9 @@
       "require": "./dist/index.cjs"
     }
   },
+  "engines": {
+    "node": ">=16"
+  },
   "files": [
     "dist"
   ],
