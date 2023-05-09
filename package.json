@@ -6,6 +6,12 @@
   "description": "download tgz package",
   "author": "kalykun <984757534@qq.com>",
   "license": "MIT",
+  "keywords": [
+    "download",
+    "tgz",
+    "tgz-downloader",
+    "nexus"
+  ],
   "homepage": "https://github.com/kungege/tgz-downloader#readme",
   "repository": {
     "type": "git",
@@ -24,7 +30,7 @@
   "module": "dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {
-    "download-tgz": "bin/download-tgz.mjs"
+    "tgz-download": "bin/download-tgz.mjs"
   },
   "files": [
     "dist",
