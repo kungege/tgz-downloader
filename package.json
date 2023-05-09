@@ -3,8 +3,17 @@
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@8.2.0",
-  "description": "",
-  "main": "./dist/index.mjs",
+  "description": "download tgz package",
+  "homepage": "https://github.com/kungege/tgz-downloader#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kungege/tgz-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kungege/tgz-downloader/issues"
+  },
+  "main": "./dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -16,8 +25,12 @@
     "node": ">=16"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
+  "bin": {
+    "download-tgz": "bin/download-tgz.mjs"
+  },
   "scripts": {
     "start": "esno src/index.ts",
     "build": "unbuild",
@@ -27,6 +40,7 @@
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",
     "axios": "^1.3.6",
+    "commander": "^10.0.1",
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1"
   },
