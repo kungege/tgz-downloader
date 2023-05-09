@@ -1,7 +1,7 @@
 {
   "name": "tgz-downloader",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@8.2.0",
   "description": "download tgz package",
   "author": "kalykun <984757534@qq.com>",
@@ -34,9 +34,10 @@
     "node": ">=16"
   },
   "scripts": {
-    "start": "esno src/index.ts",
+    "dev": "esno src/index.ts",
     "build": "unbuild",
     "lint": "eslint .",
+    "release": "bumpp && npm publish",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
     "@types/node": "^20.1.0",
+    "bumpp": "^9.1.0",
     "eslint": "^8.40.0",
     "esno": "^0.16.3",
     "typescript": "^5.0.4",
