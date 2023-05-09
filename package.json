@@ -30,9 +30,6 @@
     "dist",
     "bin"
   ],
-  "engines": {
-    "node": ">=16"
-  },
   "scripts": {
     "dev": "esno src/index.ts",
     "build": "unbuild",
