@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "packageManager": "pnpm@8.2.0",
   "description": "download tgz package",
+  "author": "kalykun <984757534@qq.com>",
+  "license": "MIT",
   "homepage": "https://github.com/kungege/tgz-downloader#readme",
   "repository": {
     "type": "git",
@@ -12,24 +14,24 @@
   "bugs": {
     "url": "https://github.com/kungege/tgz-downloader/issues"
   },
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
   "main": "./dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "engines": {
-    "node": ">=16"
+  "bin": {
+    "download-tgz": "bin/download-tgz.mjs"
   },
   "files": [
     "dist",
     "bin"
   ],
-  "bin": {
-    "download-tgz": "bin/download-tgz.mjs"
+  "engines": {
+    "node": ">=16"
   },
   "scripts": {
     "start": "esno src/index.ts",
@@ -44,8 +46,6 @@
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1"
   },
-  "author": "kalykun <984757534@qq.com>",
-  "license": "MIT",
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
     "@types/node": "^20.1.0",
