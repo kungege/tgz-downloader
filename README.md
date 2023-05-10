@@ -13,11 +13,11 @@ npm install tgz-downloader -g
 ## usage
 
 ```bash
-tgz-download
+tgz-download --lockfilePath=/Path/**/yarn.lock
 ```
 
 ## License
 
 `tgz-downloader` is licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-  Currently, only the `yarn. lock` V1 version is supported for recognition.
+  Currently, only the `yarn.lock` V1 version is supported for recognition.

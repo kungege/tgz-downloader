@@ -5,3 +5,4 @@ dist
 coverage
 tgz-packages
 yarn.lock
+package-lock.json

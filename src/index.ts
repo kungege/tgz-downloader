@@ -4,7 +4,8 @@ import { pipeline } from 'node:stream'
 import lockfile from '@yarnpkg/lockfile'
 import { mkdirp } from 'mkdirp'
 import axios from 'axios'
-import type { YarnPkgParam } from './types'
+import minimist from 'minimist'
+import type { Arguments, YarnPkgParam } from './types'
 
 const config = {
   registry: 'https://registry.npm.taobao.org/',
@@ -12,13 +13,17 @@ const config = {
 };
 
 (async () => {
-  // const args = require('minimist')(process.argv.slice(2))
-  // console.log(args)
-  const file = fs.readFileSync('yarn.lock', 'utf8')
+  const args: Arguments = minimist(process.argv.slice(2))
+  if (!args.lockfilePath)
+    throw new Error('Please provide the `lockfilePath` parameter.')
+
+  const file = fs.readFileSync(args.lockfilePath, 'utf8')
   const { object } = lockfile.parse(file)
   const yarnpkgInfo: YarnPkgParam[] = Object.values(JSON.parse(JSON.stringify(object)))
   const tgzUrlArr: string[] = yarnpkgInfo.map(item => item.resolved)
+
   await mkdirp(config.directory)
+
   for (const item of tgzUrlArr) {
     const directory = path.join(config.directory, path.posix.basename(new URL(item).pathname))
     const response = await axios.get(item, { responseType: 'stream' })
