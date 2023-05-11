@@ -7,7 +7,7 @@ import axios from 'axios'
 import minimist from 'minimist'
 import type { Arguments, YarnPkgParam } from './types'
 
-const config = {
+const defaultConfig = {
   registry: 'https://registry.npm.taobao.org/',
   directory: './tgz-packages',
 };
@@ -22,10 +22,10 @@ const config = {
   const yarnpkgInfo: YarnPkgParam[] = Object.values(JSON.parse(JSON.stringify(object)))
   const tgzUrlArr: string[] = yarnpkgInfo.map(item => item.resolved)
 
-  await mkdirp(config.directory)
+  await mkdirp(args.outputDir ?? defaultConfig.directory)
 
   for (const item of tgzUrlArr) {
-    const directory = path.join(config.directory, path.posix.basename(new URL(item).pathname))
+    const directory = path.join(args.outputDir ?? defaultConfig.directory, path.posix.basename(new URL(item).pathname))
     const response = await axios.get(item, { responseType: 'stream' })
     const output = fs.createWriteStream(directory)
     await new Promise((_resolve, reject) => {

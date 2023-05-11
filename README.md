@@ -13,7 +13,7 @@ npm install tgz-downloader -g
 ## usage
 
 ```bash
-tgz-download --lockfilePath=/Path/**/yarn.lock
+tgz-download --lockfilePath=/Path/**/yarn.lock --outputDir=/Path/**/**
 ```
 
 ## License

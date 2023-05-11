@@ -8,6 +8,7 @@ interface YarnPkgParam {
 
 interface Arguments extends ParsedArgs {
   lockfilePath?: string
+  outputDir?: string
 }
 
 export { YarnPkgParam, Arguments }
