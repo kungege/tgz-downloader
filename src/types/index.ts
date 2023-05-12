@@ -1,6 +1,6 @@
 import type { ParsedArgs } from 'minimist'
 
-interface YarnPkgParam {
+interface YarnNpmPkgParam {
   version: string
   resolved: string
   integrity: string
@@ -10,5 +10,9 @@ interface Arguments extends ParsedArgs {
   lockfilePath?: string
   outputDir?: string
 }
-
-export { YarnPkgParam, Arguments }
+enum LockfileEnum {
+  YARN = 'yarn.lock',
+  PNPM = 'pnpm-lock.yaml',
+  NPM = 'package-lock.json',
+}
+export { YarnNpmPkgParam, Arguments, LockfileEnum }
