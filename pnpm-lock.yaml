@@ -13,6 +13,9 @@ dependencies:
   commander:
     specifier: ^10.0.1
     version: registry.npmmirror.com/commander@10.0.1
+  consola:
+    specifier: ^3.1.0
+    version: 3.1.0
   minimist:
     specifier: ^1.2.8
     version: registry.npmmirror.com/minimist@1.2.8
@@ -279,6 +282,9 @@ packages:
   /chalk@5.2.0:
     resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  /consola@3.1.0:
+    resolution: {integrity: sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==}
 
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
@@ -1593,12 +1599,6 @@ packages:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/commondir/-/commondir-1.0.1.tgz}
     name: commondir
     version: 1.0.1
-    dev: true
-
-  registry.npmmirror.com/consola@3.1.0:
-    resolution: {integrity: sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/consola/-/consola-3.1.0.tgz}
-    name: consola
-    version: 3.1.0
     dev: true
 
   registry.npmmirror.com/convert-source-map@1.9.0:
@@ -4386,7 +4386,7 @@ packages:
       '@rollup/plugin-replace': registry.npmmirror.com/@rollup/plugin-replace@5.0.2(rollup@3.21.5)
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils@5.0.2(rollup@3.21.5)
       chalk: 5.2.0
-      consola: registry.npmmirror.com/consola@3.1.0
+      consola: 3.1.0
       defu: registry.npmmirror.com/defu@6.1.2
       esbuild: registry.npmmirror.com/esbuild@0.17.18
       globby: registry.npmmirror.com/globby@13.1.4
