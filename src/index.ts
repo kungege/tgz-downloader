@@ -9,7 +9,7 @@ import { consola } from 'consola'
 import type { Arguments } from './types'
 import { LockfileEnum } from './types'
 import { defaultConfig, fileTypeList } from './utils/constant'
-import { getFilePathByNpm, getFilePathByYarn } from './utils/utils'
+import { getFilePathByNpm, getFilePathByPnpm, getFilePathByYarn } from './utils/utils'
 
 (async () => {
   const args: Arguments = minimist(process.argv.slice(2))
@@ -26,8 +26,10 @@ import { getFilePathByNpm, getFilePathByYarn } from './utils/utils'
 
   if (lockfileName === LockfileEnum.NPM)
     tgzUrlList = await getFilePathByNpm(file)
-  // TODO pnpm
-  // if (lockfileName  === LockfileEnum.PNPM)
+
+  if (lockfileName === LockfileEnum.PNPM)
+    tgzUrlList = await getFilePathByPnpm(file)
+
   if (lockfileName === LockfileEnum.YARN)
     tgzUrlList = await getFilePathByYarn(file)
 

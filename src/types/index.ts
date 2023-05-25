@@ -5,6 +5,16 @@ interface YarnNpmPkgParam {
   resolved: string
   integrity: string
 }
+interface PnpmPkgParam {
+  resolution: {
+    integrity: string
+    registry?: string
+    tarball?: string
+  }
+  id: string
+  name: string
+  version: string
+}
 
 interface Arguments extends ParsedArgs {
   lockfilePath?: string
@@ -15,4 +25,4 @@ enum LockfileEnum {
   PNPM = 'pnpm-lock.yaml',
   NPM = 'package-lock.json',
 }
-export { YarnNpmPkgParam, Arguments, LockfileEnum }
+export { YarnNpmPkgParam, Arguments, LockfileEnum, PnpmPkgParam }

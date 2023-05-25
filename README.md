@@ -20,4 +20,4 @@ tgz-download --lockfilePath=/Path/**/yarn.lock --outputDir=/Path/**/**
 
 `tgz-downloader` is licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-  Currently, the `yarn.lock` V1 version && `package-lock.json` is already supported for recognition.
+  Currently, the `yarn.lock` V1 version && `package-lock.json` && `pnpm-lock.yaml` V6 version is already supported for recognition.
