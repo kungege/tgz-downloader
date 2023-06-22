@@ -11,8 +11,8 @@ dependencies:
     specifier: ^5.2.0
     version: 5.2.0
   commander:
-    specifier: ^10.0.1
-    version: registry.npmmirror.com/commander@10.0.1
+    specifier: ^11.0.0
+    version: 11.0.0
   consola:
     specifier: ^3.1.0
     version: 3.1.0
@@ -285,6 +285,11 @@ packages:
   /chalk@5.2.0:
     resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  /commander@11.0.0:
+    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+    engines: {node: '>=16'}
+    dev: false
 
   /consola@3.1.0:
     resolution: {integrity: sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==}
@@ -1593,13 +1598,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: registry.npmmirror.com/delayed-stream@1.0.0
-    dev: false
-
-  registry.npmmirror.com/commander@10.0.1:
-    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/commander/-/commander-10.0.1.tgz}
-    name: commander
-    version: 10.0.1
-    engines: {node: '>=14'}
     dev: false
 
   registry.npmmirror.com/commondir@1.0.1:
