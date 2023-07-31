@@ -2,7 +2,7 @@
   "name": "tgz-downloader",
   "type": "module",
   "version": "1.0.8",
-  "packageManager": "pnpm@8.2.0",
+  "packageManager": "pnpm@8.6.11",
   "description": "download tgz package",
   "author": "kalykun <984757534@qq.com>",
   "license": "MIT",
