@@ -33,12 +33,17 @@ import { getFilePathByNpm, getFilePathByPnpm, getFilePathByYarn } from './utils/
   if (lockfileName === LockfileEnum.YARN)
     tgzUrlList = await getFilePathByYarn(file)
 
-  await mkdirp(args.outputDir ?? defaultConfig.directory)
+  const dir = args.outputDir ?? defaultConfig.directory
+  await mkdirp(dir)
   consola.start('Starting.......')
   for (const [index, item] of tgzUrlList.entries()) {
-    const directory = path.join(args.outputDir ?? defaultConfig.directory, path.posix.basename(new URL(item).pathname))
+    if (item.includes('/@types/'))
+      await mkdirp(`${dir}/types`)
+
+    const directory = path.join(args.outputDir ?? defaultConfig.directory, item.includes('/@types/') ? 'types' : '', path.posix.basename(new URL(item).pathname))
     const response = await axios.get(item, { responseType: 'stream' })
     const output = fs.createWriteStream(directory)
+
     await new Promise((_resolve, reject) => {
       pipeline(response.data, output, (err) => {
         if (!err)
