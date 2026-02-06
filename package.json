@@ -1,8 +1,7 @@
 {
   "name": "tgz-downloader",
   "type": "module",
-  "version": "1.1.0",
-  "packageManager": "pnpm@8.2.0",
+  "version": "2.0.0",
   "description": "download tgz package",
   "author": "kalykun <984757534@qq.com>",
   "license": "MIT",
@@ -22,8 +21,8 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -33,8 +32,8 @@
     "tgz-download": "bin/download-tgz.mjs"
   },
   "files": [
-    "dist",
-    "bin"
+    "bin",
+    "dist"
   ],
   "scripts": {
     "dev": "esno src/index.ts",
@@ -45,23 +44,23 @@
   },
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",
-    "axios": "^1.3.6",
-    "chalk": "^5.2.0",
-    "commander": "^10.0.1",
-    "consola": "^3.1.0",
+    "axios": "^1.13.4",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "consola": "^3.4.2",
     "minimist": "^1.2.8",
     "mkdirp": "^3.0.1",
-    "yaml": "^2.3.0"
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.6",
-    "@types/minimist": "^1.2.2",
-    "@types/node": "^20.1.0",
-    "bumpp": "^9.1.0",
-    "eslint": "^8.40.0",
-    "esno": "^0.16.3",
-    "typescript": "^5.0.4",
-    "unbuild": "^1.2.1"
+    "@antfu/eslint-config": "^7.2.0",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^25.2.1",
+    "bumpp": "^10.4.1",
+    "eslint": "^9.39.2",
+    "esno": "^4.8.0",
+    "typescript": "^5.9.3",
+    "unbuild": "^3.6.1"
   },
   "lint-staged": {
     "*": "eslint --fix"
