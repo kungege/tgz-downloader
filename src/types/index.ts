@@ -25,4 +25,4 @@ enum LockfileEnum {
   PNPM = 'pnpm-lock.yaml',
   NPM = 'package-lock.json',
 }
-export { YarnNpmPkgParam, Arguments, LockfileEnum, PnpmPkgParam }
+export { Arguments, LockfileEnum, PnpmPkgParam, YarnNpmPkgParam }

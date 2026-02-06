@@ -1,7 +1,7 @@
 import { LockfileEnum } from '../types'
 
 const defaultConfig = {
-  registry: 'https://registry.npm.taobao.org/',
+  registry: 'https://registry.npmjs.org/',
   directory: './tgz-packages',
 }
 
