@@ -30,6 +30,8 @@ jobs:
           cache: pnpm
       - name: Install
         run: pnpm install
+      - name: Test
+        run: pnpm test
       - name: Lint
         run: pnpm lint
       - name: Typecheck

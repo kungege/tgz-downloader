@@ -1,7 +1,7 @@
 {
   "name": "tgz-downloader",
   "type": "module",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "download tgz package",
   "author": "kalykun <984757534@qq.com>",
   "license": "MIT",
@@ -37,8 +37,11 @@
   ],
   "scripts": {
     "dev": "esno src/index.ts",
+    "test": "esno test/utils.test.ts",
     "build": "unbuild",
+    "check": "npm run test && npm run lint && npm run typecheck && npm run build",
     "lint": "eslint .",
+    "prepublishOnly": "npm run check",
     "release": "bumpp && npm publish",
     "typecheck": "tsc --noEmit"
   },

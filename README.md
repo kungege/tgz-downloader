@@ -11,6 +11,10 @@ Download npm packages as tarballs (.tgz) from lockfiles for offline use or Nexus
   - `package-lock.json` (npm)
   - `pnpm-lock.yaml` (V6 and **V9**)
 - Downloads all dependencies (including transitive ones) as `.tgz` files
+- Configurable concurrent downloads, timeout, and automatic retries
+- Resumable downloads: existing non-empty files are skipped by default
+- Atomic writes prevent failed downloads from leaving corrupt `.tgz` files
+- Custom npm registry support
 - Useful for:
   - Offline installation
   - Uploading to internal Nexus/Artifactory
@@ -38,7 +42,7 @@ pnpm build
 ### Command Line
 
 ```bash
-tgz-download --lockfilePath=/path/to/your/pnpm-lock.yaml --outputDir=/path/to/output
+tgz-download --lockfilePath=./pnpm-lock.yaml --outputDir=./tgz-packages
 ```
 
 ### Options
@@ -47,6 +51,14 @@ tgz-download --lockfilePath=/path/to/your/pnpm-lock.yaml --outputDir=/path/to/ou
 |--------|----------|---------|-------------|
 | `--lockfilePath` | Yes | - | Path to lockfile (yarn.lock, package-lock.json, or pnpm-lock.yaml) |
 | `--outputDir` | No | `./tgz-packages` | Directory to save downloaded tgz files |
+| `--registry` | No | `https://registry.npmjs.org/` | Registry used to construct pnpm tarball URLs |
+| `--concurrency` | No | `5` | Maximum number of concurrent downloads |
+| `--retries` | No | `3` | Retries after the first download attempt |
+| `--timeout` | No | `30000` | Per-request timeout in milliseconds |
+| `--force` | No | `false` | Overwrite existing tarballs instead of skipping them |
+| `-h`, `--help` | No | - | Show command help |
+
+Paths beginning with `/` are absolute paths. For example, `/tgz` writes to the filesystem root and may fail with a permission error. Use `./tgz` to write below the current project directory.
 
 ### Examples
 
@@ -59,6 +71,15 @@ tgz-download --lockfilePath=./package-lock.json
 
 # Download from yarn.lock
 tgz-download --lockfilePath=./yarn.lock --outputDir=./packages
+
+# Use a mirror and increase concurrency
+tgz-download --lockfilePath=./pnpm-lock.yaml \
+  --outputDir=./tgz-packages \
+  --registry=https://registry.npmmirror.com/ \
+  --concurrency=10
+
+# Redownload files that already exist
+tgz-download --lockfilePath=./pnpm-lock.yaml --force
 ```
 
 ## Lockfile Support Status
@@ -72,13 +93,15 @@ tgz-download --lockfilePath=./yarn.lock --outputDir=./packages
 
 ### Note on pnpm v9 Support
 
-Starting from v9, pnpm changed the lockfile format. The `packages` section keys are now in the format `name@version` (e.g., `@algolia/abtesting@1.14.0`), and the `resolution` field no longer contains `tarball` URLs. This tool will automatically construct the correct download URLs from the registry.
+Starting from v9, pnpm changed the lockfile format. The `packages` section keys are now in the format `name@version` (e.g., `@algolia/abtesting@1.14.0`), and the `resolution` field no longer contains `tarball` URLs. This tool constructs the correct URLs from the registry and supports peer-dependency suffixes such as `vue@3.5.40(typescript@5.9.3)`.
 
 ## Registry
 
 By default, the tool downloads packages from:
 - **Default**: `https://registry.npmjs.org/`
 - **China Mirror** (if needed): `https://registry.npmmirror.com/`
+
+Select a registry with `--registry`. This option applies to pnpm lockfiles when the lockfile does not provide a tarball URL.
 
 ## Output Structure
 
@@ -90,8 +113,7 @@ tgz-packages/
 ├── @scope/
 │   └── package-name-2.0.0.tgz
 └── types/
-    └── @types/
-        └── node-20.0.0.tgz
+    └── node-20.0.0.tgz
 ```
 
 ## Use Cases

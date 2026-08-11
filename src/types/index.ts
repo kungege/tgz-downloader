@@ -19,6 +19,12 @@ interface PnpmPkgParam {
 interface Arguments extends ParsedArgs {
   lockfilePath?: string
   outputDir?: string
+  registry?: string
+  concurrency?: string | number
+  retries?: string | number
+  timeout?: string | number
+  force?: boolean
+  help?: boolean
 }
 enum LockfileEnum {
   YARN = 'yarn.lock',

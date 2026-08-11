@@ -14,18 +14,27 @@ export async function getFilePathByNpm(file: string): Promise<string[]> {
   return Promise.resolve([...new Set(npmpkgInfo.map(item => item.resolved))])
 }
 
-function parsePackageKey(key: string): { name: string, version: string } | null {
-  const atIndex = key.lastIndexOf('@')
-  if (atIndex <= 0)
+export function parsePackageKey(key: string): { name: string, version: string } | null {
+  const normalizedKey = key.replace(/\(.*$/, '').replace(/^\//, '')
+  const atIndex = normalizedKey.lastIndexOf('@')
+  if (atIndex > 0) {
+    return {
+      name: normalizedKey.substring(0, atIndex),
+      version: normalizedKey.substring(atIndex + 1),
+    }
+  }
+
+  const slashIndex = normalizedKey.lastIndexOf('/')
+  if (slashIndex <= 0)
     return null
 
   return {
-    name: key.substring(0, atIndex),
-    version: key.substring(atIndex + 1),
+    name: normalizedKey.substring(0, slashIndex),
+    version: normalizedKey.substring(slashIndex + 1),
   }
 }
 
-function buildTarballUrl(name: string, version: string, registry: string): string {
+export function buildTarballUrl(name: string, version: string, registry: string): string {
   const normalizedRegistry = registry.endsWith('/') ? registry : `${registry}/`
 
   if (name.startsWith('@')) {
@@ -37,12 +46,13 @@ function buildTarballUrl(name: string, version: string, registry: string): strin
   return `${normalizedRegistry}${name}/-/${name}-${version}.tgz`
 }
 
-export async function getFilePathByPnpm(file: string): Promise<string[]> {
+export async function getFilePathByPnpm(
+  file: string,
+  registry = defaultConfig.registry,
+): Promise<string[]> {
   const parsed = parse(file)
   const packages = parsed.packages || {}
   const tgzUrls: string[] = []
-  const registry = defaultConfig.registry
-
   for (const [key, value] of Object.entries(packages)) {
     const pkgInfo = value as PnpmPkgParam
     const parsedKey = parsePackageKey(key)
